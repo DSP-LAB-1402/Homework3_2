@@ -57,7 +57,6 @@ xlabel('n');
 ylabel('amplitude');
 
 %% Homework2
-
 % Here we add some essential variables
 fs = 400;
 t = 0:1 / fs:6 - (1 / fs);
@@ -339,6 +338,7 @@ b2 = [0.996088 -1.976468 0.996088];
 a2 = [1 -1.976468 0.992177];
 [h2, w2] = freqz(b2, a2, Nf);
 w2 = w2 ./ pi .* fs ./ 2;
+%%%
 % H2
 i4 = find(abs(w2 - 4) < 0.02);
 h2g4 = abs(h2(i4(1))) % 4Hz gain of H2
@@ -349,9 +349,10 @@ b2_8 = max(filtered_signal(1000:1200))
 i12 = find(abs(w2 - 12) < 0.02);
 h2g12 = abs(h2(i12(1))) % 12Hz gain of H2
 b2_12 = max(filtered_signal(1600:2000))
+%%%
 % Plotting Settling Times
 [peaksH2_value, peaksH2_index] = findpeaks(filtered_signal);
-
+%%%
 % H1 Settling Times
 figure('name', 'Settling Times for H2');
 plot(filtered_signal);
@@ -607,13 +608,14 @@ f0 = 8;
 t1 = 0:1 / fs:2 - (1 / fs);
 t2 = 2:1 / fs:4 - (1 / fs);
 t3 = 4:1 / fs:6 - (1 / fs);
-% fs = 2000;
 w0 = 2 * pi * f0 / fs;
+
 delta_f = 4;
 delta_w = 2 * pi * delta_f / fs;
 beta = tan(delta_w / 2);
 x_delta = zeros(1, N + 1);
 x_delta(1) = 1;
+
 x = [cos(2 * pi * f1 * t1) cos(2 * pi * f2 * t2) cos(2 * pi * f3 * t3)];
 figure('Name', 'compare x(t) and after filter H3');
 
@@ -649,6 +651,7 @@ b2_8 = max(filtered_signal(1000:1200))
 i12 = find(abs(w2 - 12) < 0.02);
 h2g12 = abs(h2(i12(1))) % 12Hz gain of H2
 b2_12 = max(filtered_signal(1600:2000))
+%%%
 % Plotting Settling Times
 [peaksH2_value, peaksH2_index] = findpeaks(filtered_signal);
 %%%
@@ -728,6 +731,7 @@ a2 = a4;
 b2 = b4;
 [h2, w2] = freqz(b2, a2, Nf);
 w2 = w2 ./ pi .* fs ./ 2;
+%%%
 % H2
 i4 = find(abs(w2 - 4) < 0.02);
 h2g4 = abs(h2(i4(1))) % 4Hz gain of H2
@@ -780,6 +784,7 @@ fs = 400;
 Nf = 4096;
 [h1, w1] = freqz(b3, a3, Nf);
 [h2, w2] = freqz(b4, a4, Nf);
+%%%
 % Plotting frequency response of H3 and H4
 figure('name', "Peaking Filter Responses")
 plot(w1 / pi * fs / 2, abs(h1), 'LineWidth', 1.5);
@@ -790,6 +795,7 @@ ylabel('|H(f)|');
 hold on;
 title('Frequency Responses of H3 and H4');
 plot(w2 / pi * fs / 2, abs(h2), '--', 'LineWidth', 1.5);
+%%%
 % Finding section of array which resides in the bandwidth of response
 bw1 = find(abs(abs(h1) - .5 ^ .5 * max(abs(h1))) < 0.02);
 bw2 = find(abs(abs(h2) - .5 ^ .5 * max(abs(h2))) < 0.02);
